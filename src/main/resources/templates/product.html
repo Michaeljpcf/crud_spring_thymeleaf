@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado Productos</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/products}">Control de Productos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/products}"><div class="btn btn-secondary">Listado</div></a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{/products/new}" class="nav-link"><div class="btn btn-primary">Nuevo</div></a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+    <div class="container">
+        <h1>Lista de Productos</h1>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Descripción</th>
+                <th style="width: 230px;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="product: ${product}">
+                <th scope="row" th:text="${product.idproducts}"></th>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.description}"></td>
+                <td>
+                  <a th:href="@{/products/update/{id}(id=${product.idproducts})}" class="btn btn-info">Actualizar</a>
+                  <a th:href="@{/products/{id}(id=${product.idproducts})}" class="btn btn-danger">Eliminar</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>

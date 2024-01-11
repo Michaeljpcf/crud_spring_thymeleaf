@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Producto</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/products}">Control de Productos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/products}"><div class="btn btn-secondary">Listado</div></a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{/products/new}" class="nav-link"><div class="btn btn-primary">Nuevo</div></a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+      <br>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class="text-center">Actualizar producto</h1>
+            <div class="card-body">
+              <form th:action="@{/products/{id}(id=${product.idproducts})}" th:object="${product}" method="post">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input type="text" name="name" th:field="*{name}" class="form-control" placeholder="Ingresar el nombre del producto" required>
+                </div>
+                <div class="form-group">
+                  <label>Precio</label>
+                  <input type="text" name="price" th:field="*{price}" class="form-control" placeholder="Ingresar el precio del producto" required>
+                </div>
+                <div class="form-group">
+                  <label>Descripción</label>
+                  <input type="text" name="description" th:field="*{description}" class="form-control" placeholder="Ingresar la descripción del producto" required>
+                </div>
+                <div class="box-footer">
+                  <button class="btn btn-success">Guardar</button>
+                  <button class="btn btn-link" style="float: right;">Cancelar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>
